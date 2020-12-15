@@ -1,4 +1,5 @@
 import React from 'react'
+import AddUser from '../addUser/AddUser'
 import FilterData from '../filterData/FilterData'
 import GetUserInfo from '../userInfo/UserInfo'
 import './DataTable.css'
@@ -76,12 +77,28 @@ import './DataTable.css'
 //   },
 // ]
 
+const defaultUser = {
+  id: '',
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  address: {
+    streetAddress: 'default value',
+    city: 'default value',
+    state: 'default value',
+    zip: 'default value'
+  },
+  description: 'default value'
+}
+
 export default class DataTable extends React.Component {
   state = {
     data: [],
     filtredData: [],
     userInfo: null,
     filterInput: '',
+    newUser: { ...defaultUser }
   }
 
   filterInputHandler = e => {
@@ -153,6 +170,23 @@ export default class DataTable extends React.Component {
     this.setState({filtredData})
   }
 
+  addUserInputHandler = e => {
+    const {name, value} = e.target
+    
+    const newUser = {...this.state.newUser}
+    newUser[name] = value
+
+    this.setState({newUser})
+  }
+
+  addUserSubmitHandler = () => {
+    const data = [...this.state.data]
+
+    data.unshift(this.state.newUser)
+
+    this.setState({data, newUser: defaultUser})
+  }
+
   render() {
     const data = this.state.filtredData.length === 0 ? this.state.data : this.state.filtredData
     return (
@@ -161,6 +195,11 @@ export default class DataTable extends React.Component {
           inputValue={this.filterInput}
           inputHandler={this.filterInputHandler}
           buttonHandler={this.findHandler}
+        />
+        <AddUser 
+          user={this.state.newUser}
+          setValue={this.addUserInputHandler}
+          addButton={this.addUserSubmitHandler}
         />
         <table>
           <thead>
@@ -172,7 +211,7 @@ export default class DataTable extends React.Component {
               <td onClick={this.sortTable}>phone</td>
             </tr>
           </thead>
-          {this.getTable(data)}
+          { this.getTable(data) }
         </table>
         
         <GetUserInfo user={this.state.userInfo} />
