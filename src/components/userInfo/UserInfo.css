@@ -1,0 +1,8 @@
+.user-info {
+  margin: 25px;
+}
+
+.user-info textarea {
+  height: 150px;
+  width: 300px;
+}

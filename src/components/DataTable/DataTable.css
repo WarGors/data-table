@@ -1,0 +1,25 @@
+.container table{
+  margin: 10px auto;
+  border-collapse: collapse;
+}
+
+td {
+  border: 1px solid black;
+  margin: 0;
+  padding: 10px;
+}
+
+thead td {
+  cursor: pointer;
+  /* background-color: rgba(0, 0, 0, 0.1); */
+}
+
+thead td:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+tbody tr:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
