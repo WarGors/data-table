@@ -5,7 +5,7 @@ const FilterData = props => {
   return (
     
     <div>
-      Фильтровать по содержиммоу
+      Фильтровать по содержимому
       <input 
         placeholder='Введите значение...' 
         value={inputValue} 

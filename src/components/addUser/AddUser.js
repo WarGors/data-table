@@ -1,7 +1,10 @@
+import './AddUser.css'
+
 const AddUser = props => {
-  const {user: {id, firstName, lastName, phone, email}, setValue, addButton} = props
+  const {user: {id, firstName, lastName, phone, email}, setValue, addButton, valid} = props
+  const validButton = Object.values(valid).includes(false)
   return(
-    <div>
+    <div className='add-user'>
       <div>
         <input 
           type='number' 
@@ -10,6 +13,7 @@ const AddUser = props => {
           placeholder='Введите id...'
           onChange={setValue}
         />
+        <span>{valid.id ? null : 'id может быть только целым числом'}</span>
       </div>
 
       <div>
@@ -20,6 +24,7 @@ const AddUser = props => {
           placeholder='Введите имя...'
           onChange={setValue}
         />
+        <span>{valid.firstName ? null : 'Поле имя не может быть пустым'}</span>
       </div>
 
       <div>
@@ -30,6 +35,7 @@ const AddUser = props => {
           placeholder='Введите фамилию...'
           onChange={setValue}
         />
+        <span>{valid.lastName ? null : 'Поле фамилия не может быть пустым'}</span>
       </div>
 
       <div>
@@ -40,6 +46,7 @@ const AddUser = props => {
           placeholder='Введите email...'
           onChange={setValue}
         />
+        <span>{valid.email ? null : 'Введите корректный email'}</span>
       </div>
 
       <div>
@@ -50,9 +57,10 @@ const AddUser = props => {
           placeholder='Введите телефон...'
           onChange={setValue}
         />
+        <span>{valid.phone ? null : 'Введите корректный номер телефона'}</span>
       </div>
 
-      <button onClick={addButton}>Добавить</button>
+      <button disabled={validButton} onClick={addButton}>Добавить</button>
 
     </div>
   )

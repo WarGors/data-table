@@ -92,13 +92,46 @@ const defaultUser = {
   description: 'default value'
 }
 
+const defaultValid = {
+  id: false,
+  firstName: false,
+  lastName: false,
+  email: false,
+  phone: false
+}
+
 export default class DataTable extends React.Component {
   state = {
     data: [],
     filtredData: [],
     userInfo: null,
     filterInput: '',
-    newUser: { ...defaultUser }
+    newUser: { ...defaultUser },
+    valid: { ...defaultValid }
+  }
+
+  checkValid = (name, value) => {
+    const valid = {...this.state.valid}
+    valid[name] = true
+    this.setState({valid})
+
+    if (!value) {
+      valid[name] = false
+    }
+
+    if (name === 'id') {
+      valid[name] = Number.isInteger(+value) && value
+    }
+    
+    if (name === 'phone') {
+      valid[name] = Number.isInteger(+value) && value.length === 10
+    }
+
+    if (name === 'email') {
+      valid[name] = value.includes('@')
+    }
+
+    this.setState({valid})
   }
 
   filterInputHandler = e => {
@@ -172,6 +205,7 @@ export default class DataTable extends React.Component {
 
   addUserInputHandler = e => {
     const {name, value} = e.target
+    this.checkValid(name, value)
     
     const newUser = {...this.state.newUser}
     newUser[name] = value
@@ -184,7 +218,11 @@ export default class DataTable extends React.Component {
 
     data.unshift(this.state.newUser)
 
-    this.setState({data, newUser: defaultUser})
+    this.setState({
+      valid: {...defaultValid}, 
+      newUser: {...defaultUser},
+      data
+    })
   }
 
   render() {
@@ -200,7 +238,9 @@ export default class DataTable extends React.Component {
           user={this.state.newUser}
           setValue={this.addUserInputHandler}
           addButton={this.addUserSubmitHandler}
+          valid={this.state.valid}
         />
+        {JSON.stringify(this.state.valid)}
         <table>
           <thead>
             <tr>

@@ -1,0 +1,6 @@
+.add-user span{
+  display: block;
+  color: red;
+  font-size: smaller;
+  height: 20px;
+}
