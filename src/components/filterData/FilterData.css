@@ -1,0 +1,9 @@
+.filter {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.filter input {
+  display: inline-block;
+  margin-left: 10px;
+}

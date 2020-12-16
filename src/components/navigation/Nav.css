@@ -1,0 +1,17 @@
+.nav {
+  padding: 0;
+  margin: 5px auto 30px auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+.nav li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.nav li:hover {
+  color: grey;
+}

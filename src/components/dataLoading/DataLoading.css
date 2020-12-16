@@ -1,0 +1,9 @@
+.data-loading {
+  margin: 50px auto;
+  text-align: center;
+}
+
+.data-loading button {
+  display: inline-block;
+  margin-left: 20px;
+}

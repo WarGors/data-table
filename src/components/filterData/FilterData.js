@@ -4,7 +4,7 @@ const FilterData = props => {
   const { inputValue, inputHandler, buttonHandler } = props
   return (
     
-    <div>
+    <div className='filter'>
       Фильтровать по содержимому
       <input 
         placeholder='Введите значение...' 

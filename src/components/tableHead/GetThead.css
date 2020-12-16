@@ -1,0 +1,26 @@
+thead td {
+  cursor: pointer;
+  border: solid 2px black;
+  font-weight: bold;
+}
+
+thead td:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sort {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.up::after {
+  content: '▲'
+}
+
+.down::after {
+  content: '▼'
+}
+
+.not-found {
+  font-weight: bold;
+  margin: 20px auto
+}

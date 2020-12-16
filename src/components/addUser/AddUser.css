@@ -1,6 +1,39 @@
-.add-user span{
+button {
+  cursor: pointer;
+}
+
+.add-user-toggle {
+  text-align: center;
+}
+
+.add-user {
+  margin: auto;
+  text-align: center;
+  max-width: 300px;
+  background-color: whitesmoke;
+  padding-top: 10px;
+  border: 1px solid black;
+}
+
+.add-user span {
   display: block;
   color: red;
   font-size: smaller;
   height: 20px;
+}
+
+.add-user input {
+  width: 90%;
+  height: 30px;
+}
+
+.add-user button {
+  display: inline-block;
+  margin: 5px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.add-user button:hover {
+  background-color: rgba(128, 128, 128, 0.3);
 }

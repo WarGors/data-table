@@ -1,8 +1,20 @@
 import './AddUser.css'
 
 const AddUser = props => {
-  const {user: {id, firstName, lastName, phone, email}, setValue, addButton, valid} = props
+  const {
+    user: {id, firstName, lastName, phone, email}, 
+    setValue, addButton, valid, isVisible, toggleVisible
+  } = props
   const validButton = Object.values(valid).includes(false)
+
+  if (!isVisible) {
+    return (
+      <div className='add-user-toggle'>
+        <button onClick={toggleVisible}>Добавить пользователей</button>
+      </div>
+    )
+  }
+
   return(
     <div className='add-user'>
       <div>
@@ -60,7 +72,8 @@ const AddUser = props => {
         <span>{valid.phone ? null : 'Введите корректный номер телефона'}</span>
       </div>
 
-      <button disabled={validButton} onClick={addButton}>Добавить</button>
+      <button disabled={validButton} onClick={addButton}>Добавить в таблицу</button>
+      <button onClick={toggleVisible}>Скрыть</button>
 
     </div>
   )
